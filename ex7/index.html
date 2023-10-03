@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Calculator</title>
+</head>
+<body>
+    <input type="text" id="txt-price" placeholder="Enter the price of the item">
+    <input type="text" id="txt-quantity" placeholder="Enter the quantity of the item">
+    <button id="btn-submit">Calculate</button>
+    <div id="output"></div>
+
+    <script>
+        var priceInput = document.getElementById('txt-price');
+        var quantityInput = document.getElementById('txt-quantity');
+        var submitBtn = document.getElementById('btn-submit');
+        var output = document.getElementById('output');
+
+        /* Submiting response using event listner which waits for a 
+        specific event to occur and then responds to that event by executing 
+        a predefined set of instructions or code*/
+        submitBtn.addEventListener('click', function () {
+        
+            var price = priceInput.value;
+            var quantity = quantityInput.value;
+            price = +price;
+            quantity = +quantity;
+
+            if (Number.isNaN(price) || Number.isNaN(quantity)) {
+                output.innerHTML = 'Invalid input';
+                return;
+            }
+            // total price calculation
+            var totalPrice = price * quantity;
+            totalPrice = Math.round(totalPrice * 100) / 100;
+
+            // Display the result
+            output.innerHTML = quantity + ' items at $' + price + ' each is $' + totalPrice;
+        });
+    </script>
+</body>
+</html>
